@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rules>
+    <Rule id="update">
+        <Question>Was there any ERP system update?</Question>
+        <Answer>
+            <Selection value="true">
+                <SingleValue value="yes"/>
+            </Selection>
+            <Selection value="false">
+                <SingleValue value="no"/>
+            </Selection>
+        </Answer>
+    </Rule>
+    ...
+    <Rule id="gmpmodules">
+        <Question>Were any GMP supervised modules changed?</Question>
+        <Answer>
+            <Selection value="true">
+                <MultipleValue value="warehouse,production orders,supply"/>
+            </Selection>
+            <Selection value="false">
+                <MultipleValue value="hr,accountancy,crm,document workflow"/>
+            </Selection>
+        </Answer>
+    </Rule>
+    ...
+    <Rule id="functionality">
+        <Question>Are any functionality in GMP supervised modules changed?</Question>
+        <Answer>
+            <Selection value="true">
+                <SingleValue value="yes"/>
+            </Selection>
+            <Selection value="false">
+                <SingleValue value="no"/>
+            </Selection>
+        </Answer>
+    </Rule>
+</Rules>
