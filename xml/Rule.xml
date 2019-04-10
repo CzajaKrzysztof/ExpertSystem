@@ -13,7 +13,7 @@
     </Rule>
     ...
     <Rule id="gmpmodules">
-        <Question>Were any GMP supervised modules changed?</Question>
+        <Question>What ERP modules were changed?</Question>
         <Answer>
             <Selection value="true">
                 <MultipleValue value="warehouse,production orders,supply"/>
