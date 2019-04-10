@@ -15,6 +15,10 @@ public class RuleRepository {
         return new QuestionIterator();
     }
 
+    public void addQuestion(Question question) {
+        ruleRepository.put(question.getId(), question);
+    }
+
     public class QuestionIterator implements Iterator {
 //        int index = 0;
 //        Object[] keys = ruleRepository.keySet().toArray();
