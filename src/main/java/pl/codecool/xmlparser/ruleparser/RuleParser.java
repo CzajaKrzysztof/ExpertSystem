@@ -5,6 +5,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import pl.codecool.repository.RuleRepository;
 import pl.codecool.storedata.Answer;
+import pl.codecool.storedata.Question;
 import pl.codecool.value.MultipleValue;
 import pl.codecool.value.SingleValue;
 import pl.codecool.value.Value;
@@ -17,17 +18,19 @@ public class RuleParser extends XMLParser {
     RuleRepository ruleRepository;
 
     public RuleParser() {
-        getRuleRepository();
+        ruleRepository = getRuleRepository();
     }
 
     private RuleRepository getRuleRepository() {
+        RuleRepository tempRuleRepository = new RuleRepository();
+
         NodeList ruleList = getDoc().getElementsByTagName("Rule");
         for (int rule = 0; rule < ruleList.getLength(); rule++) {
             Node ruleNode = ruleList.item(rule);
             if (ruleNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element ruleElement = (Element) ruleNode;
                 String ruleID = ruleElement.getAttribute("id");
-                String question = ruleElement.getFirstChild().getNextSibling().getTextContent();
+                String questionString = ruleElement.getFirstChild().getNextSibling().getTextContent();
                 NodeList selectionList = ruleElement.getElementsByTagName("Selection");
                 Answer answer = new Answer();
                 for (int selection = 0; selection < selectionList.getLength(); selection++) {
@@ -47,9 +50,10 @@ public class RuleParser extends XMLParser {
                         }
                     }
                 }
-                System.out.println("ID:\t" + ruleID);
-                System.out.println("Q:\t" + question);
+                Question question = new Question(ruleID, questionString, answer);
+                tempRuleRepository.addQuestion(question);
             }
         }
+        return tempRuleRepository;
     }
 }
