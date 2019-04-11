@@ -1,25 +1,26 @@
 package pl.codecool.repository;
 
 import pl.codecool.storedata.Question;
-
 import java.util.*;
 
 public class RuleRepository {
-    Map<String, Question> ruleRepository;
+    private Map<String, Question> ruleRepository;
+    private Iterator<Question> questionIterator;
 
     public RuleRepository() {
-        ruleRepository = new TreeMap<>();
+        ruleRepository = new LinkedHashMap<>();
+        questionIterator = new QuestionIterator();
     }
 
     public Iterator<Question> getIterator() {
-        return new QuestionIterator();
+        return questionIterator;
     }
 
     public void addQuestion(Question question) {
         ruleRepository.put(question.getId(), question);
     }
 
-    public class QuestionIterator implements Iterator {
+    private class QuestionIterator implements Iterator {
 //        int index = 0;
 //        Object[] keys = ruleRepository.keySet().toArray();
         Iterator<String> keyIterator = ruleRepository.keySet().iterator();
@@ -34,7 +35,7 @@ public class RuleRepository {
         }
 
         @Override
-        public Object next() {
+        public Question next() {
             if (this.hasNext()) {
 //                return ruleRepository.get(keys[index++]);
                 return ruleRepository.get(keyIterator.next());
