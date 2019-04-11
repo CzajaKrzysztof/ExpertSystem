@@ -14,8 +14,13 @@ public class Answer {
 
     public boolean evaluateAnswerByInput(String input) {
         for (Value value: valueList) {
-            
+            for (String entry : value.getInputPattern()) {
+                if (input.equals(entry)) {
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     public void addValue(Value value) {
