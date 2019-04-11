@@ -1,7 +1,6 @@
 package pl.codecool.storedata;
 
 import pl.codecool.value.Value;
-
 import java.util.ArrayList;
 import java.util.List;
 
