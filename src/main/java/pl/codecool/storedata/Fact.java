@@ -19,7 +19,7 @@ public class Fact {
         return evals.keySet();
     }
 
-    public void setFactValueById(String id, Boolean value) {
+    public void setFactValueById(String id, boolean value) {
         evals.put(id, value);
     }
 
