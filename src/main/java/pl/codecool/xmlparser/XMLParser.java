@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public abstract class XMLParser {
-    private Document doc;
+    protected Document doc;
 
     public void loadXmlDocument(String xmlPath) {
         try {
