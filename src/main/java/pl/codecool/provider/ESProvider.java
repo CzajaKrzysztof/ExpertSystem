@@ -10,10 +10,10 @@ import pl.codecool.xmlparser.ruleparser.RuleParser;
 import java.util.*;
 
 public class ESProvider {
-    RuleRepository ruleRepository;
-    FactRepository factRepository;
-    Map<String, Boolean> userAnswers;
-    Scanner scanner;
+    private RuleRepository ruleRepository;
+    private FactRepository factRepository;
+    private Map<String, Boolean> userAnswers;
+    private Scanner scanner;
 
     public ESProvider(FactParser factParser, RuleParser ruleParser) {
         ruleRepository = ruleParser.getRuleRepository();
@@ -25,7 +25,7 @@ public class ESProvider {
         userAnswers = new LinkedHashMap<>();
         Iterator<Question> ruleIterator = ruleRepository.getIterator();
         while (ruleIterator.hasNext()) {
-            Question question = (Question) ruleIterator.next();
+            Question question = ruleIterator.next();
             askQuestion(question);
         }
     }
@@ -43,10 +43,6 @@ public class ESProvider {
                 System.out.println("No answer by your input");
             }
         }
-    }
-
-    public boolean getAnswerByQuestion(String questionId) {
-        return false;
     }
 
     public String evaluate() {
