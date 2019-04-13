@@ -1,16 +1,13 @@
 package pl.codecool.provider;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import pl.codecool.repository.FactRepository;
 import pl.codecool.repository.RuleRepository;
+import pl.codecool.storedata.Fact;
 import pl.codecool.storedata.Question;
 import pl.codecool.xmlparser.factparser.FactParser;
 import pl.codecool.xmlparser.ruleparser.RuleParser;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class ESProvider {
     RuleRepository ruleRepository;
@@ -26,7 +23,7 @@ public class ESProvider {
 
     public void collectAnswers(){
         userAnswers = new LinkedHashMap<>();
-        Iterator ruleIterator = ruleRepository.getIterator();
+        Iterator<Question> ruleIterator = ruleRepository.getIterator();
         while (ruleIterator.hasNext()) {
             Question question = (Question) ruleIterator.next();
             askQuestion(question);
@@ -53,6 +50,29 @@ public class ESProvider {
     }
 
     public String evaluate() {
+        String factDesctiption = "";
+        Iterator<Fact> factIterator = factRepository.getFactIterator();
+        while (factIterator.hasNext()) {
+            Fact fact = factIterator.next();
+            if (compareFactAndUserAnswer(fact)) {
+                factDesctiption = fact.getDescription();
+            }
+        }
+        return factDesctiption;
+    }
 
+    private boolean compareFactAndUserAnswer(Fact fact) {
+        boolean result = false;
+        Set<String> evalIDs= fact.getIdSet();
+        for (String evalID: evalIDs) {
+            boolean evalValue = fact.getValueById(evalID);
+            boolean userValue = userAnswers.get(evalID);
+            if (evalValue == userValue) {
+                result = true;
+            } else {
+                return false;
+            }
+        }
+        return result;
     }
 }
