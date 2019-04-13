@@ -8,7 +8,14 @@
             <Eval id="functionality">false</Eval>
         </Evals>
     </Fact>
-    ...
+    <Fact id="novalidation_1">
+        <Description value="No validation required"/>
+        <Evals>
+            <Eval id="update">false</Eval>
+            <Eval id="gmpmodules">false</Eval>
+            <Eval id="functionality">false</Eval>
+        </Evals>
+    </Fact>
     <Fact id="simplevalidation">
         <Description value="Basic validation required"/>
         <Evals>
@@ -17,7 +24,6 @@
             <Eval id="functionality">false</Eval>
         </Evals>
     </Fact>
-    ...
     <Fact id="fullvalidation">
         <Description value="Full validation required"/>
         <Evals>
