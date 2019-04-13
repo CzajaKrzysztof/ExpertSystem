@@ -21,17 +21,17 @@ public class RuleRepository {
     }
 
     public class QuestionIterator implements Iterator {
-        Iterator<String> keyIterator = ruleRepository.keySet().iterator();
+        int index = 0;
 
         @Override
         public boolean hasNext() {
-            return keyIterator.hasNext();
+            return index < ruleRepository.size();
         }
 
         @Override
         public Question next() {
             if (this.hasNext()) {
-                return ruleRepository.get(keyIterator.next());
+                return (Question) ruleRepository.values().toArray()[index++];
             }
             return null;
         }

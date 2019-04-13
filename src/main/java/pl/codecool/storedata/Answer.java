@@ -16,12 +16,10 @@ public class Answer {
             for (String entry : value.getInputPattern()) {
                 if (input.equals(entry)) {
                     return value.getSelectionType();
-                } else {
-                    throw new IllegalArgumentException();
                 }
             }
         }
-        return false;
+        throw new IllegalArgumentException();
     }
 
     public void addValue(Value value) {

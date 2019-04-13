@@ -19,11 +19,11 @@ public abstract class XMLParser {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-        } catch (SAXException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("No file by name");
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
             e.printStackTrace();
         }
     }

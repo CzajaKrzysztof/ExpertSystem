@@ -22,7 +22,7 @@ public class RuleParser extends XMLParser {
 
     public RuleParser() {
         ruleRepository = new RuleRepository();
-        loadXmlDocument("Rule.xml");
+        loadXmlDocument("src/xml/Rule.xml");
         parseRules(doc);
     }
 

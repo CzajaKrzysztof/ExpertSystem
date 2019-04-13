@@ -10,7 +10,7 @@
   <build>
     <resources>
       <resource>
-        <directory>xml</directory>
+        <directory>src/xml</directory>
       </resource>
     </resources>
   </build>

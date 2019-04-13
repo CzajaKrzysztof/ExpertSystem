@@ -14,7 +14,7 @@ public class FactParser extends XMLParser {
 
     public FactParser() {
         factRepository = new FactRepository();
-        loadXmlDocument("Fact.xml");
+        loadXmlDocument("src/xml/Fact.xml");
         parseFacts(doc);
     }
 
@@ -36,10 +36,17 @@ public class FactParser extends XMLParser {
 
     private Fact parseFact(Element factElement) {
         String factID = factElement.getAttribute("id");
-        String description = factElement.getFirstChild().getNextSibling().getTextContent();
+        String description = parseDescription(factElement);
         Fact fact = new Fact(factID, description);
         parseFactEval(factElement, fact);
         return fact;
+    }
+
+    private String parseDescription(Element factElement) {
+        Node descriptionNode = factElement.getElementsByTagName("Description").item(0);
+        Element descriptionElement = (Element) descriptionNode;
+        String description = descriptionElement.getAttribute("value");
+        return description;
     }
 
     private void parseFactEval(Element factElement, Fact fact) {
