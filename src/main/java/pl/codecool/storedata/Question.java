@@ -15,7 +15,6 @@ public class Question {
         return id;
     }
 
-
     public String getQuestion() {
         return question;
     }
@@ -24,7 +23,7 @@ public class Question {
         return answer;
     }
 
-    public boolean getEvaluatedAnswer(String input) {
+    public boolean getEvaluatedAnswer(String input) throws IllegalArgumentException {
         return answer.evaluateAnswerByInput(input);
     }
 }
