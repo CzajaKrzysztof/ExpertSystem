@@ -11,11 +11,13 @@ public class Answer {
         valueList = new ArrayList<>();
     }
 
-    public boolean evaluateAnswerByInput(String input) {
+    public boolean evaluateAnswerByInput(String input) throws IllegalArgumentException {
         for (Value value: valueList) {
             for (String entry : value.getInputPattern()) {
                 if (input.equals(entry)) {
-                    return true;
+                    return value.getSelectionType();
+                } else {
+                    throw new IllegalArgumentException();
                 }
             }
         }
